@@ -1,0 +1,7 @@
+.filter-notes-container li {
+    display: inline-block;
+    position: relative;
+    margin-right: 35px;
+    padding-bottom: 15px;
+    cursor: pointer;
+}
