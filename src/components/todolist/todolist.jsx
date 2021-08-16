@@ -6,7 +6,8 @@ class Todolist extends React.Component {
 
   constructor(props) {
     super(props);
-    const items = [1,2,3];
+    
+    const items = [];
 
     this.state = {value: ''};
     this.state = {items: items};
@@ -31,17 +32,28 @@ class Todolist extends React.Component {
   }
 
   newNote(event) {
+
+    const item = {
+        'key' : this.state.items.length + 1,
+        'title' : 'este es mi title',
+        'description' : '',
+    };
+
     this.setState({
-      items: this.state.items.concat(  this.state.items.length + 1 )
+      items: this.state.items.concat( item )
     });
+
+    console.log(this.state.items);
 
   }
 
     render() {
       const items = this.state.items;
-      const listItems = items.map((number) =>
-      <div key={number.toString()} className="note">
-        {number}
+      const listItems = items.map((item,i) =>
+      <div key={i} className="note">
+        <span className="title">{item.title}</span>
+        <span className="description">{item.description}</span>
+        <span className="key">{item.key}</span>
       </div>
     );
       return (
@@ -53,7 +65,7 @@ class Todolist extends React.Component {
               </div>
             </div>
             <div className="notelist">
-              <ul>{listItems}</ul>
+              <div>{listItems}</div>
             </div>
             <div className="new-note-section">
               <form onSubmit={this.handleSubmit}>
