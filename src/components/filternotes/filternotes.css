@@ -1,7 +1,23 @@
+.filter-notes-container {
+    width: 100%;
+    display: flex;
+}
 .filter-notes-container li {
     display: inline-block;
     position: relative;
     margin-right: 35px;
     padding-bottom: 15px;
     cursor: pointer;
+}
+
+.filter-notes-status, .filter-notes-class {
+    width: 50%;
+}
+.filter-notes-class {
+    text-align: right;
+}
+
+ul.filter-notes {
+    margin: 0;
+    padding: 10px;
 }

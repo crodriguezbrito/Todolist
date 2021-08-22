@@ -1,3 +1,8 @@
+.content {
+    display: flex;
+    flex: 1 1;
+}
+
 .mynotes {
     height: 100%;
 }
@@ -8,15 +13,11 @@
 .mynotes .notelist {
     width: 30%;
     background-color: tomato;
-    position: relative;
-    float: left;
 }
 
 .mynotes .new-note-section {
     width: 70%;
     background-color: teal;
-    height: 100%;
-    float: right;
 }
 
 .mynotes .new-note-section .title-note {
@@ -29,4 +30,8 @@
     margin: 50px auto;
     height: 30em;
     width: 70em;
+}
+
+.footer-new-button {
+    text-align: right;
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import Filternotes from '../filternotes/filternotes';
+import Note from '../note/note';
 import "./todolist.css";
 
 class Todolist extends React.Component {
@@ -43,37 +44,43 @@ class Todolist extends React.Component {
       items: this.state.items.concat( item )
     });
 
-    console.log(this.state.items);
-
   }
 
     render() {
       const items = this.state.items;
       const listItems = items.map((item,i) =>
-      <div key={i} className="note">
-        <span className="title">{item.title}</span>
-        <span className="description">{item.description}</span>
-        <span className="key">{item.key}</span>
-      </div>
-    );
+        <div key={i} className="note">
+          <span className="title">{item.title}</span>
+          <span className="description">{item.description}</span>
+          <span className="key">{item.key}</span>
+        </div>
+      );
+      const note = {
+        id: 0,
+      };
       return (
         <div className="mynotes">
-            <h1>My Notes</h1>
-            <div className="filters">
-              <div className="filter-letf">
-                <Filternotes />
+            <div className="header">
+              <div className="header-title-and-filter">
+                <h1 className="mynotes-header-title">My Notes</h1>
+                
               </div>
+              <div className="header-filters">
+                  <div className="filters">
+                    <Filternotes />
+                  </div>
+
+                </div>
             </div>
-            <div className="notelist">
-              <div>{listItems}</div>
-            </div>
-            <div className="new-note-section">
-              <form onSubmit={this.handleSubmit}>
-                  <input type="text" className="title-note"/>
-                  <textarea className="description-note"></textarea>
-              </form>
-              <div className="footer-new-button">
-                  <span className="button-new-note" onClick={this.newNote}> Add </span>
+            <div className="content">
+              <div className="notelist">
+                <div>{listItems}</div>
+              </div>
+              <div className="new-note-section">
+                <Note id={note.id} items={items} />
+                <div className="footer-new-button">
+                    <span className="button-new-note" onClick={this.newNote}> Add </span>
+                </div>
               </div>
             </div>
         </div>
