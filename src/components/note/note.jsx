@@ -2,22 +2,15 @@ import React from 'react';
 
 class Note extends React.Component {
 
-    constructor(props) {
-        super(props);
-
-    }
-
     render() {
-        if( this.props.items.length !== 0) {
+        if( !this.props.id) {
             this.property = 'Hay Property';
         } else {
             this.property = 
             <div className="empty-note-editor">
-                <span>No note selected!</span>
+                <span>{this.props.id}</span>
             </div>;
         }
-
-        console.log(this.props);
 
         return (
             <span>{this.property}</span>

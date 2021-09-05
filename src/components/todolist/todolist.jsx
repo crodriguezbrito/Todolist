@@ -1,6 +1,7 @@
 import React from 'react';
 import Filternotes from '../filternotes/filternotes';
 import Note from '../note/note';
+import ListItems from '../listitems/listitems';
 import "./todolist.css";
 
 class Todolist extends React.Component {
@@ -8,10 +9,7 @@ class Todolist extends React.Component {
   constructor(props) {
     super(props);
     
-    const items = [];
-
-    this.state = {value: ''};
-    this.state = {items: items};
+    this.state = {value: '', items:[], id:0};
 
 
     //this.handleChange = this.handleChange.bind(this);
@@ -41,23 +39,14 @@ class Todolist extends React.Component {
     };
 
     this.setState({
-      items: this.state.items.concat( item )
+      items: this.state.items.concat( item ),
+      id: this.state.items.length + 1
     });
 
   }
 
     render() {
-      const items = this.state.items;
-      const listItems = items.map((item,i) =>
-        <div key={i} className="note">
-          <span className="title">{item.title}</span>
-          <span className="description">{item.description}</span>
-          <span className="key">{item.key}</span>
-        </div>
-      );
-      const note = {
-        id: 0,
-      };
+
       return (
         <div className="mynotes">
             <div className="header">
@@ -74,10 +63,10 @@ class Todolist extends React.Component {
             </div>
             <div className="content">
               <div className="notelist">
-                <div>{listItems}</div>
+                <ListItems items={this.state.items} />
               </div>
               <div className="new-note-section">
-                <Note id={note.id} items={items} />
+                <Note id={this.state.id}/>
                 <div className="footer-new-button">
                     <span className="button-new-note" onClick={this.newNote}> Add </span>
                 </div>
