@@ -10,7 +10,7 @@ class ListItems extends React.Component {v
             this.display =  
             <div>
             {this.props.items.map((item,i) => (
-              <div key={i} className="note">
+              <div key={i} className="note" onClick={this.props.loadItem(item)}>
                 <span className="title">{item.title}</span>
                 <span className="description">{item.description}</span>
                 <span className="key">{item.key}</span>

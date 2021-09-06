@@ -9,12 +9,13 @@ class Todolist extends React.Component {
   constructor(props) {
     super(props);
     
-    this.state = {value: '', items:[], id:0};
+    this.state = {value: '', items:[], item:0};
 
 
     //this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.newNote = this.newNote.bind(this);
+    this.loadItem = this.loadItem.bind(this);
   }
 
   handleChange(event) {
@@ -34,7 +35,7 @@ class Todolist extends React.Component {
 
     const item = {
         'key' : this.state.items.length + 1,
-        'title' : 'este es mi title',
+        'title' : 'este es mi titled',
         'description' : '',
     };
 
@@ -43,6 +44,14 @@ class Todolist extends React.Component {
       id: this.state.items.length + 1
     });
 
+  }
+
+  loadItem(item) {
+    console.log(item);
+
+    this.setState({
+      item: item,
+    });
   }
 
     render() {
@@ -63,10 +72,10 @@ class Todolist extends React.Component {
             </div>
             <div className="content">
               <div className="notelist">
-                <ListItems items={this.state.items} />
+                <ListItems items={this.state.items} loadItem={this.loadItem}/>
               </div>
               <div className="new-note-section">
-                <Note id={this.state.id}/>
+                <Note id={this.state.item}/>
                 <div className="footer-new-button">
                     <span className="button-new-note" onClick={this.newNote}> Add </span>
                 </div>
