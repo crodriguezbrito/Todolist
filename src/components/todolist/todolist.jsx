@@ -32,6 +32,7 @@ class Todolist extends React.Component {
   }
 
   newNote(event) {
+    event.preventDefault();
 
     const item = {
         'key' : this.state.items.length + 1,
@@ -41,13 +42,14 @@ class Todolist extends React.Component {
 
     this.setState({
       items: this.state.items.concat( item ),
-      id: this.state.items.length + 1
+      id: this.state.items.length + 1,
+      item: item
     });
 
   }
 
   loadItem(item) {
-    console.log(item);
+    //console.log(item);
 
     this.setState({
       item: item,
@@ -67,15 +69,14 @@ class Todolist extends React.Component {
                   <div className="filters">
                     <Filternotes />
                   </div>
-
                 </div>
             </div>
             <div className="content">
               <div className="notelist">
-                <ListItems items={this.state.items} loadItem={this.loadItem}/>
+                <ListItems items={this.state.items}/>
               </div>
               <div className="new-note-section">
-                <Note id={this.state.item}/>
+                <Note item={this.state.item}/>
                 <div className="footer-new-button">
                     <span className="button-new-note" onClick={this.newNote}> Add </span>
                 </div>

@@ -2,7 +2,7 @@ import React from 'react';
 
 class Note extends React.Component {
 
-    
+
     render() {
         if( !this.props.item) {
             this.property = 'No note selected';

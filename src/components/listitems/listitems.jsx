@@ -1,6 +1,11 @@
 import React from 'react';
 
-class ListItems extends React.Component {v
+class ListItems extends React.Component {
+
+     loadnote(item,e) {
+      console.log(item);
+      //https://es.reactjs.org/docs/lifting-state-up.html
+    }
 
     render() {
         
@@ -10,7 +15,7 @@ class ListItems extends React.Component {v
             this.display =  
             <div>
             {this.props.items.map((item,i) => (
-              <div key={i} className="note" onClick={this.props.loadItem(item)}>
+              <div key={i} className="note" onClick={(e) => this.loadnote(item, e)}>
                 <span className="title">{item.title}</span>
                 <span className="description">{item.description}</span>
                 <span className="key">{item.key}</span>
