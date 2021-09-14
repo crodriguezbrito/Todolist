@@ -1,11 +1,13 @@
 .content {
     display: flex;
-    flex: 1 1;
+    width: 100%;
+    height: 650px;
 }
 
-.mynotes {
-    height: 100%;
-}
+/*.content div.notelist, .content div.new-note-section {
+    display: inline-grid;
+}*/
+
 .mynotes h1 {
     text-align: left;
     margin: 10px;
@@ -33,5 +35,7 @@
 }
 
 .footer-new-button {
-    text-align: right;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
 }
