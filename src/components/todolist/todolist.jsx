@@ -15,6 +15,7 @@ class Todolist extends React.Component {
     this.onClickItem = this.onClickItem.bind(this);
     this.removeItem = this.removeItem.bind(this);
     this.onToggleStarred = this.onToggleStarred.bind(this);
+    this.onChangeCompleted = this.onChangeCompleted.bind(this);
   }
 
   // New Note Button
@@ -22,7 +23,7 @@ class Todolist extends React.Component {
     event.preventDefault();
 
     const item = {
-        'key' : this.state.items.length + 1,
+        'key' :  Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
         'title' : 'este es mi titled',
         'content' : '',
         'completed': false,
@@ -52,8 +53,15 @@ class Todolist extends React.Component {
   //StartONOFF
   onToggleStarred( item,key ) {
     const array = this.state.items;
-    const todo = array.find( (todo) => todo.key === key+1 );
+    const todo = array.find( (todo) => todo.key === key );
     todo.starred = !todo.starred;
+    this.setState({items:array});
+  }
+
+  onChangeCompleted( key ) {
+    const array = this.state.items;
+    const todo = array.find( (todo) => todo.key === key );
+    todo.completed = !todo.completed;
     this.setState({items:array});
   }
 
@@ -74,10 +82,10 @@ class Todolist extends React.Component {
             </div>
             <div className="content">
               <div className="notelist">
-                <ListItems loadItem={this.onClickItem} removeItem={this.removeItem} onToggleStarred= {this.onToggleStarred} items={this.state.items}/>
+                <ListItems loadItem={this.onClickItem} removeItem={this.removeItem} onToggleStarred= {this.onToggleStarred} onChangeCompleted = {this.onChangeCompleted} items={this.state.items}/>
               </div>
               <div className="new-note-section">
-                <Note loadItem={this.onClickItem} item={this.state.item}/>
+                <Note removeItem={this.removeItem} onToggleStarred= {this.onToggleStarred} onChangeCompleted = {this.onChangeCompleted} item={this.state.item}/>
                 <div className="footer-new-button">
                     <span className="button-new-note" onClick={this.newNote}> Add </span>
                 </div>

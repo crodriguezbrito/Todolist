@@ -8,7 +8,7 @@ class ListItems extends React.Component {
     this.loadNote = this.loadNote.bind(this);
     this.removeItem = this.removeItem.bind(this);
     this.onToggleStarred = this.onToggleStarred.bind(this);
-
+    this.handleChangeChk = this.handleChangeChk.bind(this);
   }
 
   loadNote(item,e) {
@@ -24,6 +24,10 @@ class ListItems extends React.Component {
     this.props.onToggleStarred( item,i );
   }
 
+  handleChangeChk(key) {
+    this.props.onChangeCompleted(key);
+  }
+
   render() {
         
     if( this.props.items.length === 0 ) {
@@ -32,12 +36,11 @@ class ListItems extends React.Component {
         this.display =  
         <div>
         {this.props.items.map((item,i) => (
-            <div key={i} className="note" onClick={(e) => this.loadNote(item, e)}>
+            <div key={item.key} className="note" onClick={(e) => this.loadNote(item, e)}>
+              <input type="checkbox" defaultChecked={item.completed} onChange={ (e) =>this.handleChangeChk(item.key)}/>
               <span className="title">{item.title}</span>
-              <span className="description">{item.description}</span>
-              <span className="key">{item.key}</span>
-              { (item.starred) ? <span className="starred" onClick={(e) => this.onToggleStarred(item, i)} >⭐</span> : <span className="starred" onClick={(e) => this.onToggleStarred(item, i)} >✩</span>}
-              <span className="delete" onClick={(e) => this.removeItem(item, i)} >🗑</span>
+              { (item.starred) ? <span className="starred" onClick={(e) => this.onToggleStarred(item, item.key)} >⭐</span> : <span className="not_starred" onClick={(e) => this.onToggleStarred(item, item.key)} >✩</span>}
+              <span className="delete" onClick={(e) => this.removeItem(item, item.key)} >🗑</span>
             </div>
           ))
         }
