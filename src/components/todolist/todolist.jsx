@@ -55,6 +55,7 @@ class Todolist extends React.Component {
     const todo = array.find( (todo) => todo.key === key+1 );
     todo.starred = !todo.starred;
     this.setState({items:array});
+    console.log('test');
   }
 
     render() {
