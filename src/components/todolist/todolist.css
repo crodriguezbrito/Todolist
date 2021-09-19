@@ -35,3 +35,7 @@
 .footer-new-button {
     text-align: right;
 }
+
+.notelist .note {
+    margin: 20px;
+}

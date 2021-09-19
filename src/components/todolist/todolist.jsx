@@ -11,33 +11,23 @@ class Todolist extends React.Component {
     
     this.state = {value: '', items:[], item:0};
 
-
-    //this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.newNote = this.newNote.bind(this);
-    this.loadItem = this.loadItem.bind(this);
+    this.onClickItem = this.onClickItem.bind(this);
+    this.removeItem = this.removeItem.bind(this);
+    this.onToggleStarred = this.onToggleStarred.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
-
-  handleSubmit(event) {
-    alert('Create a new note: ' + this.state.value);
-    event.preventDefault();
-
-    //Aquuí hay que guardar las notas para imprimir.
-    // Llamar al componente que almacena las notas para que imprima una nueva.
-
-  }
-
+  // New Note Button
   newNote(event) {
     event.preventDefault();
 
     const item = {
         'key' : this.state.items.length + 1,
         'title' : 'este es mi titled',
-        'description' : '',
+        'content' : '',
+        'completed': false,
+        'starred' : false,
+        'categories': [],
     };
 
     this.setState({
@@ -48,12 +38,23 @@ class Todolist extends React.Component {
 
   }
 
-  loadItem(item) {
-    //console.log(item);
+  //LoadItem on note section
+  onClickItem(item) {
+    this.setState({item:item});
+  }
 
-    this.setState({
-      item: item,
-    });
+  // Remove item from list
+  removeItem( item, key ) {
+    const array = this.state.items;
+    array.splice(key, 1);
+  }
+
+  //StartONOFF
+  onToggleStarred( item,key ) {
+    const array = this.state.items;
+    const todo = array.find( (todo) => todo.key === key+1 );
+    todo.starred = !todo.starred;
+    this.setState({items:array});
   }
 
     render() {
@@ -73,10 +74,10 @@ class Todolist extends React.Component {
             </div>
             <div className="content">
               <div className="notelist">
-                <ListItems items={this.state.items}/>
+                <ListItems loadItem={this.onClickItem} removeItem={this.removeItem} onToggleStarred= {this.onToggleStarred} items={this.state.items}/>
               </div>
               <div className="new-note-section">
-                <Note item={this.state.item}/>
+                <Note loadItem={this.onClickItem} item={this.state.item}/>
                 <div className="footer-new-button">
                     <span className="button-new-note" onClick={this.newNote}> Add </span>
                 </div>
