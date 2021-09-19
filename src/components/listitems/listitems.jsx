@@ -40,7 +40,7 @@ class ListItems extends React.Component {
               <input type="checkbox" defaultChecked={item.completed} onChange={ (e) =>this.handleChangeChk(item.key)}/>
               <span className="title">{item.title}</span>
               { (item.starred) ? <span className="starred" onClick={(e) => this.onToggleStarred(item, item.key)} >⭐</span> : <span className="not_starred" onClick={(e) => this.onToggleStarred(item, item.key)} >✩</span>}
-              <span className="delete" onClick={(e) => this.removeItem(item, item.key)} >🗑</span>
+              <span className="delete material-icons" onClick={(e) => this.removeItem(item, item.key)} >delete_outline</span>
             </div>
           ))
         }

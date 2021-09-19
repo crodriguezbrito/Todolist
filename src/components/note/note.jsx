@@ -38,7 +38,7 @@ class Note extends React.Component {
                         <span className="key">{item.key}</span>
                         <input type="checkbox" defaultChecked={item.completed} onChange={ (e) =>this.handleChangeChk(item.key)}/>
                         { (item.starred) ? <span className="starred" onClick={(e) => this.onToggleStarred(item, item.key)} >⭐</span> : <span className="not_starred" onClick={(e) => this.onToggleStarred(item, item.key)} >✩</span>}
-                        <span className="delete" onClick={(e) => this.removeItem(item, item.key)} >🗑</span>
+                        <span className="delete material-icons" onClick={(e) => this.removeItem(item, item.key)} >delete_outline</span>
                     </div>
                 </div>
                 <div className="categories-selector">

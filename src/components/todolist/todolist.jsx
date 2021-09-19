@@ -87,7 +87,7 @@ class Todolist extends React.Component {
               <div className="new-note-section">
                 <Note removeItem={this.removeItem} onToggleStarred= {this.onToggleStarred} onChangeCompleted = {this.onChangeCompleted} item={this.state.item}/>
                 <div className="footer-new-button">
-                    <span className="button-new-note" onClick={this.newNote}> Add </span>
+                    <span className="button-new-note material-icons" onClick={this.newNote}> add </span>
                 </div>
               </div>
             </div>
