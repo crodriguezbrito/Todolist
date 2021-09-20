@@ -16,6 +16,8 @@ class Todolist extends React.Component {
     this.removeItem = this.removeItem.bind(this);
     this.onToggleStarred = this.onToggleStarred.bind(this);
     this.onChangeCompleted = this.onChangeCompleted.bind(this);
+    this.onTitleChange = this.onTitleChange.bind(this);
+
   }
 
   // New Note Button
@@ -65,6 +67,17 @@ class Todolist extends React.Component {
     this.setState({items:array});
   }
 
+  onTitleChange ( value, key ) {
+    const array = this.state.items;
+    const todo = array.find( (todo) => todo.key === key );
+    todo.title = value;
+    this.setState({
+      items:array,
+      item:todo
+    });
+
+  }
+
     render() {
 
       return (
@@ -85,7 +98,7 @@ class Todolist extends React.Component {
                 <ListItems loadItem={this.onClickItem} removeItem={this.removeItem} onToggleStarred= {this.onToggleStarred} onChangeCompleted = {this.onChangeCompleted} items={this.state.items}/>
               </div>
               <div className="new-note-section">
-                <Note removeItem={this.removeItem} onToggleStarred= {this.onToggleStarred} onChangeCompleted = {this.onChangeCompleted} item={this.state.item}/>
+                <Note removeItem={this.removeItem} onTitleChange={this.onTitleChange} onToggleStarred= {this.onToggleStarred} onChangeCompleted = {this.onChangeCompleted} item={this.state.item}/>
                 <div className="footer-new-button">
                     <span className="button-new-note material-icons" onClick={this.newNote}> add </span>
                 </div>

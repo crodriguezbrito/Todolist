@@ -37,10 +37,10 @@ class ListItems extends React.Component {
         <div>
         {this.props.items.map((item,i) => (
             <div key={item.key} className="note" onClick={(e) => this.loadNote(item, e)}>
-              <input type="checkbox" defaultChecked={item.completed} onChange={ (e) =>this.handleChangeChk(item.key)}/>
-              <span className="title">{item.title}</span>
-              { (item.starred) ? <span className="starred" onClick={(e) => this.onToggleStarred(item, item.key)} >⭐</span> : <span className="not_starred" onClick={(e) => this.onToggleStarred(item, item.key)} >✩</span>}
-              <span className="delete material-icons" onClick={(e) => this.removeItem(item, item.key)} >delete_outline</span>
+              { (item.completed) ? <span className="icon-button note_completed completed material-icons" onClick={ (e) =>this.handleChangeChk(item.key)} >check</span> : <span className="icon-button note_completed material-icons" onClick={ (e) =>this.handleChangeChk(item.key)} >check</span>}
+              <div className="note__title">{item.title}</div>
+              { (item.starred) ? <span className="icon-button note_starred starred material-icons" onClick={(e) => this.onToggleStarred(item, item.key)} >star</span> : <span className="icon-button note_starred material-icons" onClick={(e) => this.onToggleStarred(item, item.key)} >star_outline</span>}
+              <span className="icon-button note_delete material-icons" onClick={(e) => this.removeItem(item, item.key)} >delete_outline</span>
             </div>
           ))
         }

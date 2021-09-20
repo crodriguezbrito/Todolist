@@ -4,22 +4,17 @@
     height: 650px;
 }
 
-/*.content div.notelist, .content div.new-note-section {
-    display: inline-grid;
-}*/
-
 .mynotes h1 {
     text-align: left;
     margin: 10px;
 }
 .mynotes .notelist {
     width: 30%;
-    background-color: tomato;
+    background: #f5f6fb;
 }
 
 .mynotes .new-note-section {
     width: 70%;
-    background-color: teal;
 }
 
 .mynotes .new-note-section .title-note {
@@ -45,11 +40,62 @@
     margin: 20px;
 }
 
+.note {
+    background: #fff;
+    padding: 15px;
+    margin: 20px;
+    border-radius: 12px;
+    transition: all .2s ease-in-out;
+    box-shadow: 0 3px 16px 0 rgb(44 44 197 / 16%);
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    user-select: none;
+}
+.icon-button {
+    background: #fafbfd;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+    cursor: pointer;
+}
 
+.note__title {
+    flex: 1 1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: auto 0;
+}
+
+.note_completed.completed {
+    color:#893ffb;
+}
+.note_starred.starred, .note_starred:hover {
+    color: #ffd500;
+}
+.note_delete:hover {
+    color: red;
+}
 /*note.jsx CSS*/
 
 .note-editor {
     display: flex;
     flex-direction: column;
     height: 100%;
+}
+.note-editor__header {
+    display: flex;
+}
+.note-editor__title {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    flex: 1 1;
+    font-size: 2em;
+    font-weight: 600;
 }
