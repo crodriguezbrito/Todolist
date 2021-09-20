@@ -26,7 +26,7 @@ class Todolist extends React.Component {
 
     const item = {
         'key' :  Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
-        'title' : 'este es mi titled',
+        'title' : 'este es mi title',
         'content' : '',
         'completed': false,
         'starred' : false,
@@ -35,7 +35,6 @@ class Todolist extends React.Component {
 
     this.setState({
       items: this.state.items.concat( item ),
-      id: this.state.items.length + 1,
       item: item
     });
 
@@ -49,13 +48,15 @@ class Todolist extends React.Component {
   // Remove item from list
   removeItem( item, key ) {
     const array = this.state.items;
-    array.splice(key, 1);
+    const index = array.findIndex( (todo) => todo.key === key );
+    array.splice(index, 1);
   }
 
   //StartONOFF
   onToggleStarred( item,key ) {
     const array = this.state.items;
     const todo = array.find( (todo) => todo.key === key );
+    console.log(todo);
     todo.starred = !todo.starred;
     this.setState({items:array});
   }
