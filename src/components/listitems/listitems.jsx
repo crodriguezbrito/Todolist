@@ -9,6 +9,7 @@ class ListItems extends React.Component {
     this.removeItem = this.removeItem.bind(this);
     this.onToggleStarred = this.onToggleStarred.bind(this);
     this.handleChangeChk = this.handleChangeChk.bind(this);
+    this.getTodoItems = this.getTodoItems.bind(this);
   }
 
   loadNote(item,e) {
@@ -28,14 +29,29 @@ class ListItems extends React.Component {
     this.props.onChangeCompleted(key);
   }
 
+  getTodoItems(items,active_filter) {
+
+    switch( active_filter ) {
+       case 'to-do':
+         items = items.filter((item) => (!item.completed));
+         break;
+       case 'completed':
+         items = items.filter((item) => (item.completed) );
+         break;
+       case '':
+         items = items;
+    }
+    return items;
+  }
+
   render() {
-        
-    if( this.props.items.length === 0 ) {
+    const items = this.getTodoItems( this.props.items, this.props.activeFilter);
+    if( items.length === 0 ) {
       this.display = <div><p>Empty notes</p></div>
     } else {
         this.display =  
         <div>
-        {this.props.items.map((item,i) => (
+        {items.map((item,i) => (
             <div key={item.key} className="note" onClick={(e) => this.loadNote(item, e)}>
               { (item.completed) ? <span className="icon-button note_completed completed material-icons" onClick={ (e) =>this.handleChangeChk(item.key)} >check</span> : <span className="icon-button note_completed material-icons" onClick={ (e) =>this.handleChangeChk(item.key)} >check</span>}
               <div className="note__title">{item.title}</div>

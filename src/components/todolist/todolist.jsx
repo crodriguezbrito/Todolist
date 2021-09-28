@@ -9,14 +9,15 @@ class Todolist extends React.Component {
   constructor(props) {
     super(props);
     
-    this.state = {value: '', items:[], item:0};
+    this.state = {value: '', items:[], item:0, filter:'to-do'};
 
     this.newNote = this.newNote.bind(this);
     this.onClickItem = this.onClickItem.bind(this);
     this.removeItem = this.removeItem.bind(this);
     this.onToggleStarred = this.onToggleStarred.bind(this);
     this.onChangeCompleted = this.onChangeCompleted.bind(this);
-    this.onTitleChange = this.onTitleChange.bind(this);
+    this.onTextChange = this.onTextChange.bind(this);
+    this.onFilterChange = this.onFilterChange.bind(this);
 
   }
 
@@ -50,13 +51,13 @@ class Todolist extends React.Component {
     const array = this.state.items;
     const index = array.findIndex( (todo) => todo.key === key );
     array.splice(index, 1);
+    
   }
 
   //StartONOFF
   onToggleStarred( item,key ) {
     const array = this.state.items;
     const todo = array.find( (todo) => todo.key === key );
-    console.log(todo);
     todo.starred = !todo.starred;
     this.setState({items:array});
   }
@@ -68,15 +69,30 @@ class Todolist extends React.Component {
     this.setState({items:array});
   }
 
-  onTitleChange ( value, key ) {
+  onTextChange ( value, key, type ) {
     const array = this.state.items;
     const todo = array.find( (todo) => todo.key === key );
-    todo.title = value;
+    switch(type) {
+      case 'title':
+        todo.title = value;
+        break;
+      case 'content':
+        todo.content = value;
+        break;
+      default:
+        // code block
+    }
     this.setState({
       items:array,
       item:todo
     });
 
+  }
+
+  onFilterChange(new_filter) {
+    this.setState({
+      filter:new_filter,
+    });
   }
 
     render() {
@@ -90,16 +106,16 @@ class Todolist extends React.Component {
               </div>
               <div className="header-filters">
                   <div className="filters">
-                    <Filternotes />
+                    <Filternotes activeFilter={this.state.filter} onFilterChange={this.onFilterChange}/>
                   </div>
                 </div>
             </div>
             <div className="content">
               <div className="notelist">
-                <ListItems loadItem={this.onClickItem} removeItem={this.removeItem} onToggleStarred= {this.onToggleStarred} onChangeCompleted = {this.onChangeCompleted} items={this.state.items}/>
+                <ListItems loadItem={this.onClickItem} removeItem={this.removeItem} onToggleStarred= {this.onToggleStarred} onChangeCompleted = {this.onChangeCompleted} items={this.state.items} activeFilter={this.state.filter}/>
               </div>
               <div className="new-note-section">
-                <Note removeItem={this.removeItem} onTitleChange={this.onTitleChange} onToggleStarred= {this.onToggleStarred} onChangeCompleted = {this.onChangeCompleted} item={this.state.item}/>
+                <Note removeItem={this.removeItem} onTextChange={this.onTextChange} onToggleStarred= {this.onToggleStarred} onChangeCompleted = {this.onChangeCompleted} item={this.state.item}/>
                 <div className="footer-new-button">
                     <span className="button-new-note material-icons" onClick={this.newNote}> add </span>
                 </div>

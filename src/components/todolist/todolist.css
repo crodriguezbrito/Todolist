@@ -92,10 +92,40 @@
     display: flex;
 }
 .note-editor__title {
+    font-size: 2em;
+    font-weight: 600;
+}
+
+.note-editor__content, .note-editor__title {
     width: 100%;
     padding: 10px;
     border: none;
     flex: 1 1;
-    font-size: 2em;
-    font-weight: 600;
+}
+
+.note-editor__content {
+    font-size: 1em;
+    font-weight: inherit;
+    line-height: inherit;
+}
+
+.note-editor .categories-selector {
+    padding: 0 10px;
+}
+
+.categories-selector__category {
+    cursor: pointer;
+    background: #dddfe8;
+    color: #3a4143;
+    margin-right: 5px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: .7em;
+    text-transform: uppercase;
+    font-weight: 600
+}
+
+.categories-selector__category.selected {
+    background: #3fa3fb;
+    color: #fff;
 }

@@ -8,7 +8,7 @@ class Note extends React.Component {
         this.removeItem = this.removeItem.bind(this);
         this.onToggleStarred = this.onToggleStarred.bind(this);
         this.handleChangeChk = this.handleChangeChk.bind(this);
-        this.onTitleChange = this.onTitleChange.bind(this);
+        this.onTextChange = this.onTextChange.bind(this);
 
     }
 
@@ -24,8 +24,8 @@ class Note extends React.Component {
         this.props.onChangeCompleted(key);
       }
 
-      onTitleChange(value,key) {
-        this.props.onTitleChange( value,key );
+      onTextChange(value,key,type) {
+        this.props.onTextChange( value,key,type );
       }
 
     render() {
@@ -39,16 +39,17 @@ class Note extends React.Component {
             this.property =
             <div className="note-editor">
                 <div className="note-editor__header">
-                    <input type="text" className="note-editor__title" placeholder="Set the note title"  onChange={e => this.onTitleChange(e.target.value,item.key)} value={title}/>
+                    <input type="text" className="note-editor__title" placeholder="Set the note title"  onChange={e => this.onTextChange(e.target.value,item.key,'title')} value={title}/>
                     { (item.completed) ? <span className="icon-button note_completed completed material-icons" onClick={ (e) =>this.handleChangeChk(item.key)} >check</span> : <span className="icon-button note_completed material-icons" onClick={ (e) =>this.handleChangeChk(item.key)} >check</span>}
                     { (item.starred) ? <span className="icon-button note_starred starred material-icons" onClick={(e) => this.onToggleStarred(item, item.key)} >star</span> : <span className="icon-button note_starred material-icons" onClick={(e) => this.onToggleStarred(item, item.key)} >star_outline</span>}
                     <span className="icon-button note_delete material-icons" onClick={(e) => this.removeItem(item, item.key)} >delete_outline</span>
                 </div>
-                <div className="categories-selector">
-
-                </div>
+                <div class="categories-selector">
+                    <span class="categories-selector__category">Work</span>
+                    <span class="categories-selector__category">Home</span>
+                    <span class="categories-selector__category">Personal</span></div>
                 <div className="note-editor-content">
-                    <textarea className="note-editor__content" placeholder="Set the note content">{item.content}</textarea>
+                    <textarea className="note-editor__content" placeholder="Set the note content" onChange={e => this.onTextChange(e.target.value,item.key,'content')} value={content} ></textarea>
                 </div>
                 
             </div>;
