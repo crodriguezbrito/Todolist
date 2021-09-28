@@ -4,11 +4,8 @@ import React from 'react';
 class ListItems extends React.Component {
 
   constructor(props) {
+    
     super(props);
-    this.loadNote = this.loadNote.bind(this);
-    this.removeItem = this.removeItem.bind(this);
-    this.onToggleStarred = this.onToggleStarred.bind(this);
-    this.handleChangeChk = this.handleChangeChk.bind(this);
     this.getTodoItems = this.getTodoItems.bind(this);
   }
 
@@ -33,10 +30,10 @@ class ListItems extends React.Component {
 
     switch( active_filter ) {
        case 'to-do':
-         items = items.filter((item) => (!item.completed));
+         items = items.filter( (item) => (!item.completed) );
          break;
        case 'completed':
-         items = items.filter((item) => (item.completed) );
+         items = items.filter( (item) => (item.completed) );
          break;
        case '':
          items = items;

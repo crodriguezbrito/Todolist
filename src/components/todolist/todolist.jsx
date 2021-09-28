@@ -9,7 +9,7 @@ class Todolist extends React.Component {
   constructor(props) {
     super(props);
     
-    this.state = {value: '', items:[], item:0, filter:'to-do'};
+    this.state = {value: '', items:[], item:0, filter:'to-do', filter_tag:'all'};
 
     this.newNote = this.newNote.bind(this);
     this.onClickItem = this.onClickItem.bind(this);
@@ -89,10 +89,23 @@ class Todolist extends React.Component {
 
   }
 
-  onFilterChange(new_filter) {
-    this.setState({
-      filter:new_filter,
-    });
+  onFilterChange(new_filter,section) {
+
+    switch (section) {
+      case 'primary':
+        this.setState({
+          filter:new_filter,
+        });
+        break;
+
+      case 'secondary':
+        this.setState({
+          filter_tag:new_filter,
+        });
+        break;
+    }
+
+   
   }
 
     render() {
@@ -106,7 +119,7 @@ class Todolist extends React.Component {
               </div>
               <div className="header-filters">
                   <div className="filters">
-                    <Filternotes activeFilter={this.state.filter} onFilterChange={this.onFilterChange}/>
+                    <Filternotes activeFilter={this.state.filter} activeFilterTags={this.state.filter_tag} onFilterChange={this.onFilterChange}/>
                   </div>
                 </div>
             </div>

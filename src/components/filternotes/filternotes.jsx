@@ -19,11 +19,29 @@ class Filternotes extends React.Component {
                 value: ""
             }
         ];
+        this.filters_tags = [
+            {
+                name: "All",
+                value: 'all'
+            },
+            {
+                name: "Work",
+                value: 'work'
+            },
+            {
+                name: "Home",
+                value: 'home'
+            },
+            {
+                name: "Personal",
+                value: "personal"
+            }
+        ];
 
       }
-    onFilterChange(value) {
+    onFilterChange(value,section) {
         // Hacer el handle cuando el filtro cambia para luego filtar los items que son de este tipoc
-        this.props.onFilterChange(value);
+        this.props.onFilterChange(value,section);
     }
     render() {
         return (
@@ -32,17 +50,18 @@ class Filternotes extends React.Component {
                     <ul className="filter-notes">
                     {this.filters.map((filter,i) => (
                         
-                        <li key={i} className={`filter ${filter.value === this.props.activeFilter ? 'active' : ''} `} onClick={e => this.onFilterChange(filter.value)}>{filter.name}</li>
+                        <li key={i} className={`filter ${filter.value === this.props.activeFilter ? 'active' : ''} `} onClick={e => this.onFilterChange(filter.value,'primary')}>{filter.name}</li>
                         ))
                     }
                     </ul>
                 </div>
                 <div className="filter-notes-class"> 
-                    <ul className="filter-notes">
-                        <li className="filter-note-item filter-note-item-class-all">ALL</li>
-                        <li className="filter-note-item filter-note-item-class-work">WORK</li>
-                        <li className="filter-note-item filter-note-item-class-home">HOME</li>
-                        <li className="filter-note-item filter-note-item-class-personal">PERSONAL</li>
+                    <ul className="filter-notes-tags">
+                    {this.filters_tags.map((filter,i) => (
+                        
+                        <li key={i} className={`filter ${filter.value === this.props.activeFilterTags ? 'active' : ''} `} onClick={e => this.onFilterChange(filter.value,'secondary')}>{filter.name}</li>
+                        ))
+                    }
                     </ul>
                 </div>
             </div>
