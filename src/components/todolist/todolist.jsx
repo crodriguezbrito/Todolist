@@ -91,7 +91,6 @@ class Todolist extends React.Component {
   }
 
   onFilterChange(new_filter,section) {
-
     switch (section) {
       case 'primary':
         this.setState({
@@ -104,18 +103,17 @@ class Todolist extends React.Component {
           filter_tag:new_filter,
         });
         break;
+      default:
     }   
   }
 
   onToggleCategories(category,item) {
-     const index = item.categories.indexOf(category);
-     console.log(index);
+    const index = item.categories.indexOf(category);
     if (index > -1) {
       item.categories.splice(index, 1);
     } else {
       item.categories.push(category);
     }
-    console.log(item);
     this.setState({
       item:item
     });
@@ -138,7 +136,7 @@ class Todolist extends React.Component {
             </div>
             <div className="content">
               <div className="notelist">
-                <ListItems loadItem={this.onClickItem} removeItem={this.removeItem} onToggleStarred= {this.onToggleStarred} onChangeCompleted = {this.onChangeCompleted} items={this.state.items} activeFilter={this.state.filter}/>
+                <ListItems loadItem={this.onClickItem} removeItem={this.removeItem} onToggleStarred= {this.onToggleStarred} onChangeCompleted = {this.onChangeCompleted} items={this.state.items} activeFilter={this.state.filter} activeFilterTags={this.state.filter_tag}/>
               </div>
               <div className="new-note-section">
                 <Note removeItem={this.removeItem} onTextChange={this.onTextChange} onToggleStarred= {this.onToggleStarred} onChangeCompleted = {this.onChangeCompleted} item={this.state.item} onToggleCategories={this.onToggleCategories}/>

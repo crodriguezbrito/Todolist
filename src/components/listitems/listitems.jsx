@@ -26,8 +26,7 @@ class ListItems extends React.Component {
     this.props.onChangeCompleted(key);
   }
 
-  getTodoItems(items,active_filter) {
-
+  getTodoItems(items,active_filter,active_filter_tags) {
     switch( active_filter ) {
        case 'to-do':
          items = items.filter( (item) => (!item.completed) );
@@ -35,14 +34,26 @@ class ListItems extends React.Component {
        case 'completed':
          items = items.filter( (item) => (item.completed) );
          break;
-       case '':
-         items = items;
+       default:
     }
+    switch( active_filter_tags ) {
+      case 'work':
+        items = items.filter( (item) => (item.categories.includes('work')) );
+        break;
+      case 'home':
+        items = items.filter( (item) => (item.categories.includes('home')) );
+        break;
+      case 'personal':
+        items = items.filter( (item) => (item.categories.includes('personal')) );
+      break;
+      default:
+   }
+
     return items;
   }
 
   render() {
-    const items = this.getTodoItems( this.props.items, this.props.activeFilter);
+    const items = this.getTodoItems( this.props.items, this.props.activeFilter, this.props.activeFilterTags);
     if( items.length === 0 ) {
       this.display = <div><p>Empty notes</p></div>
     } else {

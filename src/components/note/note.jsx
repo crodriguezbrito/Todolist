@@ -49,7 +49,6 @@ class Note extends React.Component {
 
     render() {
         const item = this.props.item;
-        console.log(item);
         if( !item) {
             this.property = 'No note selected';
         } else {
@@ -64,7 +63,7 @@ class Note extends React.Component {
                     { (item.starred) ? <span className="icon-button note_starred starred material-icons" onClick={(e) => this.onToggleStarred(item, item.key)} >star</span> : <span className="icon-button note_starred material-icons" onClick={(e) => this.onToggleStarred(item, item.key)} >star_outline</span>}
                     <span className="icon-button note_delete material-icons" onClick={(e) => this.removeItem(item, item.key)} >delete_outline</span>
                 </div>
-                <div class="categories-selector">
+                <div className="categories-selector">
                     {this.categories.map((category,i) => (
                         <span key={i} className={`categories-selector__category ${ item.categories.includes(category.value) ? 'selected' : ''} `} onClick={e => this.onToggleCategories(category.value,item)}>{category.name}</span>
                         ))
