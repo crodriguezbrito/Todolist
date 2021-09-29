@@ -5,6 +5,21 @@ class Note extends React.Component {
     constructor(props) {
         super(props);
 
+        this.categories = [
+            {
+                name: "Work",
+                value: 'work'
+            },
+            {
+                name: "Home",
+                value: 'home'
+            },
+            {
+                name: "Personal",
+                value: 'personal'
+            }
+        ];
+
         this.removeItem = this.removeItem.bind(this);
         this.onToggleStarred = this.onToggleStarred.bind(this);
         this.handleChangeChk = this.handleChangeChk.bind(this);
@@ -28,8 +43,13 @@ class Note extends React.Component {
         this.props.onTextChange( value,key,type );
       }
 
+      onToggleCategories(category,item) {
+        this.props.onToggleCategories(category,item);
+    }
+
     render() {
         const item = this.props.item;
+        console.log(item);
         if( !item) {
             this.property = 'No note selected';
         } else {
@@ -45,9 +65,11 @@ class Note extends React.Component {
                     <span className="icon-button note_delete material-icons" onClick={(e) => this.removeItem(item, item.key)} >delete_outline</span>
                 </div>
                 <div class="categories-selector">
-                    <span class="categories-selector__category">Work</span>
-                    <span class="categories-selector__category">Home</span>
-                    <span class="categories-selector__category">Personal</span></div>
+                    {this.categories.map((category,i) => (
+                        <span key={i} className={`categories-selector__category ${ item.categories.includes(category.value) ? 'selected' : ''} `} onClick={e => this.onToggleCategories(category.value,item)}>{category.name}</span>
+                        ))
+                    }
+                </div>
                 <div className="note-editor-content">
                     <textarea className="note-editor__content" placeholder="Set the note content" onChange={e => this.onTextChange(e.target.value,item.key,'content')} value={content} ></textarea>
                 </div>

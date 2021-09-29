@@ -18,6 +18,7 @@ class Todolist extends React.Component {
     this.onChangeCompleted = this.onChangeCompleted.bind(this);
     this.onTextChange = this.onTextChange.bind(this);
     this.onFilterChange = this.onFilterChange.bind(this);
+    this.onToggleCategories = this.onToggleCategories.bind(this);
 
   }
 
@@ -103,9 +104,21 @@ class Todolist extends React.Component {
           filter_tag:new_filter,
         });
         break;
-    }
+    }   
+  }
 
-   
+  onToggleCategories(category,item) {
+     const index = item.categories.indexOf(category);
+     console.log(index);
+    if (index > -1) {
+      item.categories.splice(index, 1);
+    } else {
+      item.categories.push(category);
+    }
+    console.log(item);
+    this.setState({
+      item:item
+    });
   }
 
     render() {
@@ -128,7 +141,7 @@ class Todolist extends React.Component {
                 <ListItems loadItem={this.onClickItem} removeItem={this.removeItem} onToggleStarred= {this.onToggleStarred} onChangeCompleted = {this.onChangeCompleted} items={this.state.items} activeFilter={this.state.filter}/>
               </div>
               <div className="new-note-section">
-                <Note removeItem={this.removeItem} onTextChange={this.onTextChange} onToggleStarred= {this.onToggleStarred} onChangeCompleted = {this.onChangeCompleted} item={this.state.item}/>
+                <Note removeItem={this.removeItem} onTextChange={this.onTextChange} onToggleStarred= {this.onToggleStarred} onChangeCompleted = {this.onChangeCompleted} item={this.state.item} onToggleCategories={this.onToggleCategories}/>
                 <div className="footer-new-button">
                     <span className="button-new-note material-icons" onClick={this.newNote}> add </span>
                 </div>
