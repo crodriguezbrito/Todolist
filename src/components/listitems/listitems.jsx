@@ -26,7 +26,8 @@ class ListItems extends React.Component {
     this.props.onChangeCompleted(key);
   }
 
-  getTodoItems(items,active_filter,active_filter_tags) {
+  getTodoItems(items,active_filter,active_filter_tags,searchItem) {
+    items = items.filter( (item) => (item.title.includes(searchItem)) );
     switch( active_filter ) {
        case 'to-do':
          items = items.filter( (item) => (!item.completed) );
@@ -53,7 +54,7 @@ class ListItems extends React.Component {
   }
 
   render() {
-    const items = this.getTodoItems( this.props.items, this.props.activeFilter, this.props.activeFilterTags);
+    const items = this.getTodoItems( this.props.items, this.props.activeFilter, this.props.activeFilterTags, this.props.searchItem);
     if( items.length === 0 ) {
       this.display = <div><p>Empty notes</p></div>
     } else {

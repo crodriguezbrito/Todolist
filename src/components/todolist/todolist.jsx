@@ -9,7 +9,7 @@ class Todolist extends React.Component {
   constructor(props) {
     super(props);
     
-    this.state = {value: '', items:[], item:0, filter:'to-do', filter_tag:'all'};
+    this.state = {value: '', items:[], item:0, filter:'to-do', filter_tag:'all', search:''};
 
     this.newNote = this.newNote.bind(this);
     this.onClickItem = this.onClickItem.bind(this);
@@ -120,8 +120,11 @@ class Todolist extends React.Component {
     });
   }
 
-  searchItem() {
-    console.log("Display de search");
+  searchItem(value) {
+    this.setState({
+      search:value,
+    });
+
   }
 
     render() {
@@ -132,7 +135,7 @@ class Todolist extends React.Component {
               <div className="header-title-and-filter">
                 <h1 className="mynotes-header-title">My Notes</h1>
                 <div className="app-header__search">
-                  <input className="app-header__search__input" onChange={(e) => this.searchItem()}/>
+                  <input className="app-header__search__input" onChange={(e) => this.searchItem(e.target.value)}/>
                 </div>
               </div>
               <div className="header-filters">
@@ -143,7 +146,7 @@ class Todolist extends React.Component {
             </div>
             <div className="content">
               <div className="notelist">
-                <ListItems loadItem={this.onClickItem} removeItem={this.removeItem} onToggleStarred= {this.onToggleStarred} onChangeCompleted = {this.onChangeCompleted} items={this.state.items} activeFilter={this.state.filter} activeFilterTags={this.state.filter_tag}/>
+                <ListItems loadItem={this.onClickItem} removeItem={this.removeItem} onToggleStarred= {this.onToggleStarred} onChangeCompleted = {this.onChangeCompleted} items={this.state.items} activeFilter={this.state.filter} activeFilterTags={this.state.filter_tag} searchItem={this.state.search}/>
               </div>
               <div className="new-note-section">
                 <Note removeItem={this.removeItem} onTextChange={this.onTextChange} onToggleStarred= {this.onToggleStarred} onChangeCompleted = {this.onChangeCompleted} item={this.state.item} onToggleCategories={this.onToggleCategories}/>
