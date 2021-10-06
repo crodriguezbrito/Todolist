@@ -126,7 +126,10 @@ class Todolist extends React.Component {
             <div className="header">
               <div className="header-title-and-filter">
                 <h1 className="mynotes-header-title">My Notes</h1>
-                
+                <div className="app-header__search">
+                  <input className="app-header__search__input" value=""/>
+
+                </div>
               </div>
               <div className="header-filters">
                   <div className="filters">

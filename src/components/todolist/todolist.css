@@ -3,10 +3,20 @@
     width: 100%;
     height: 650px;
 }
-
+.header-title-and-filter {
+    display: flex;
+}
+.app-header__search__input {
+    padding: 6px 14px;
+    border-radius: 50px;
+    border: 2px solid #e8e8e8;
+    width: 300px;
+    outline: none !important;
+    font-size: .9em;
+}
 .mynotes h1 {
-    text-align: left;
     margin: 10px;
+    flex: 1 1;
 }
 .mynotes .notelist {
     width: 30%;
@@ -30,10 +40,22 @@
 }
 
 .footer-new-button {
-    text-align: right;
     position: fixed;
     bottom: 30px;
     right: 30px;
+   
+}
+.footer-new-button .button-new-note {
+    width: 58px;
+    height: 58px;
+    font-size: 1.8em;
+    background: #893ffb;
+    color: #fff;
+    box-shadow: 2px 8px 18px 0 rgba(21,21,38,.36);
+    border-radius: 50%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 .notelist .note {
