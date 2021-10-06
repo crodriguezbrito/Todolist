@@ -19,6 +19,7 @@ class Todolist extends React.Component {
     this.onTextChange = this.onTextChange.bind(this);
     this.onFilterChange = this.onFilterChange.bind(this);
     this.onToggleCategories = this.onToggleCategories.bind(this);
+    this.searchItem = this.searchItem.bind(this);
 
   }
 
@@ -119,6 +120,10 @@ class Todolist extends React.Component {
     });
   }
 
+  searchItem() {
+    console.log("Display de search");
+  }
+
     render() {
 
       return (
@@ -127,8 +132,7 @@ class Todolist extends React.Component {
               <div className="header-title-and-filter">
                 <h1 className="mynotes-header-title">My Notes</h1>
                 <div className="app-header__search">
-                  <input className="app-header__search__input" value=""/>
-
+                  <input className="app-header__search__input" onChange={(e) => this.searchItem()}/>
                 </div>
               </div>
               <div className="header-filters">
